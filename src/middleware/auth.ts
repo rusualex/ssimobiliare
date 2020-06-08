@@ -18,7 +18,6 @@ export async function auth(ctx: Context, next: Next): Promise<void> {
         user = await userService.getUserById(id);
       else
         user = await userService.getUserById(id._id);
-      console.log(user);
       if (user) {
         await next();
       } else {
