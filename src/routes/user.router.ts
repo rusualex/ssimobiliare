@@ -49,10 +49,10 @@ export class UserRouter {
       }
     });
 
-    router.get('/:userName', async (ctx: Context) => {
+    router.get('/:username', async (ctx: Context) => {
       try {
-        const userName: string = ctx.params.userName;
-        const userResponse: IUser = await userService.getUserByUsername(userName);
+        const username: string = ctx.params.username;
+        const userResponse: IUser = await userService.getUserByusername(username);
         if (userResponse) {
           ctx.status = 200;
           ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(userResponse));

@@ -7,8 +7,8 @@ import { IResetBody } from '../model/reset.model';
 import { IUser } from '../model/user.model';
 
 export class LoginService {
-  async login(userName: string, password: string): Promise<IUser> {
-    const user: IUser = await userService.getUserByUsername(userName);
+  async login(username: string, password: string): Promise<IUser> {
+    const user: IUser = await userService.getUserByusername(username);
     if (user) {
       const isValidPassword: boolean = await bcrypt.compare(password, user.encrypted_password);
       if (isValidPassword) {
@@ -25,7 +25,7 @@ export class LoginService {
   }
 
   async resetPassword(body: IResetBody): Promise<boolean> {
-    const user: IUser = await userService.getUserByUsername(body.resetEmail);
+    const user: IUser = await userService.getUserByusername(body.resetEmail);
     // if (user) {
     //   await nodemailer.createTestAccount();
 

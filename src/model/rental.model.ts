@@ -14,7 +14,7 @@ export interface IRental extends Document {
   requirements: IRequirement;
   location: string;
   description: string;
-  userName_who_posted: string;
+  username_who_posted: string;
   pictures: string[];
   feedbacks: IFeedbackRental[];
 }

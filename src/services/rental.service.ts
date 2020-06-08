@@ -11,7 +11,7 @@ export class RentalService {
   }
 
   async getRentalByWhoPosted(rentalPoster:string):Promise<IRental> {
-    return Rental.findOne({ userName_who_posted: rentalPoster });
+    return Rental.findOne({ username_who_posted: rentalPoster });
   }
 
   async saveRental(rental: IRental): Promise<IRental> {
