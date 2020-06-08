@@ -3,7 +3,7 @@ import bodyParser from 'koa-bodyparser';
 import cors from 'koa-cors';
 import Router from 'koa-router';
 import mongoose from 'mongoose';
-import { parentRouter, ampq } from './';
+import { parentRouter } from './';
 import { admin } from './middleware/admin';
 import { auth } from './middleware/auth';
 import config from 'config';

@@ -7,7 +7,6 @@ import { LoginService } from './services/login.service';
 import { ResponseWrapperService } from './services/response-wrapper.service';
 import { RentalService } from './services/rental.service';
 import { UserService } from './services/user.service';
-import * as ampq from 'amqplib/callback_api';
 
 const parentRouter: ParentRouter = new ParentRouter();
 const userRouter: UserRouter = new UserRouter();
@@ -33,6 +32,5 @@ export {
   rentalService,
   responseWrapperService,
   loginService,
-  hashService,
-  ampq
+  hashService
 };
