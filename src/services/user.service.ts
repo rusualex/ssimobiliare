@@ -22,7 +22,7 @@ export class UserService {
   }
 
   async updateUser(user: IUser): Promise<IMongoResponse> {
-    const currentUser: IUser = await this.getUserById(user._id);
+    const currentUser: IUser = await this.getUserById(user.id);
     const samePassword: boolean = user.encrypted_password === currentUser.encrypted_password;
 
     if (!samePassword) {
@@ -31,7 +31,7 @@ export class UserService {
 
     // await rentalService.updateNestedUsers(user);
 
-    return User.updateOne({ _id: user._id }, { $set: user });
+    return User.updateOne({ _id: user.id }, { $set: user });
   }
 
   async deleteUserById(userId: string): Promise<IMongoResponse> {

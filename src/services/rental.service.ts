@@ -19,7 +19,7 @@ export class RentalService {
   }
 
   async updateRental(rental: IRental): Promise<IMongoResponse> {
-    return Rental.updateOne({ _id: rental._id }, { $set: rental });
+    return Rental.updateOne({ _id: rental.id }, { $set: rental });
   }
 
   async deleteRentalById(rentalId: string): Promise<IMongoResponse> {
