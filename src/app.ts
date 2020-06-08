@@ -13,7 +13,7 @@ import config from 'config';
   const port: number = config.get('PORT');
   const app: Koa = new Koa();
   const router: Router = new Router().use(parentRouter.getRouter().routes());
-  const dbURL: string = config.get('DB');
+  const dbURL: string = process.env.MONGODB_URI;
   console.log('db', dbURL);
 
 
