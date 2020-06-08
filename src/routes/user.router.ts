@@ -83,7 +83,7 @@ export class UserRouter {
       }
     });
 
-    router.put('/', auth, async (ctx: Context) => {
+    router.put('/', async (ctx: Context) => {
       try {
         const userResponse: IMongoResponse = await userService.updateUser(ctx.request.body);
         ctx.status = 200;
