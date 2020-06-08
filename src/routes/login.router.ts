@@ -14,6 +14,7 @@ export class LoginRouter {
         const auth: IUser = await loginService.login(ctx.request.body.userName, ctx.request.body.encrypted_password);
         if (auth) {
           ctx.status = 200;
+          (auth as any).id = (auth as any)._id;
           ctx.body = responseWrapperService.wrapOk(auth);
         }
         else {

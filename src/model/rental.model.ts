@@ -5,6 +5,7 @@ import { IFeedbackRental } from './feedback-rental.model';
 
 export interface IRental extends Document {
   _id: string;
+  id: string;
   title: string;
   price: number;
   price_garanty: boolean;

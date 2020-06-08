@@ -10,7 +10,7 @@ import { IUser } from '../model/user.model';
 import { auth } from '../middleware/auth';
 
 export class UserRouter {
-  getRouter(): Router { 
+  getRouter(): Router {
     const router: Router = new Router();
 
     router.get('/', async (ctx: Context) => {
@@ -36,7 +36,7 @@ export class UserRouter {
         const userResponse: IUser = await userService.getUserById(userId);
         if (userResponse) {
           ctx.status = 200;
-          const etc:any = userResponse;
+          const etc: any = userResponse;
           ctx.body = responseWrapperService.wrapOk(userResponse);
         }
         else {

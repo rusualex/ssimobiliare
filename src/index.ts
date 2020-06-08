@@ -1,3 +1,4 @@
+import { IdMapper } from './services/idMapper.service';
 import { LoginRouter } from './routes/login.router';
 import { ParentRouter } from './routes/parent.router';
 import { RentalRouter } from './routes/rental.router';
@@ -17,7 +18,7 @@ const rentalService: RentalService = new RentalService();
 const responseWrapperService: ResponseWrapperService = new ResponseWrapperService();
 const hashService: HashService = new HashService();
 const loginService: LoginService = new LoginService();
-
+const IdMapper: IdMapper = new IdMapper();
 // if (!config.get('jwtPrivateKey')) {
 //   console.error('FATAL ERROR: jwtPrivateKey is not defined');
 //   process.exit(1);
@@ -32,5 +33,6 @@ export {
   rentalService,
   responseWrapperService,
   loginService,
+  idMapper,
   hashService
 };
