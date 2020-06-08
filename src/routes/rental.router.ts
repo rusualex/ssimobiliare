@@ -21,7 +21,7 @@ export class RentalRouter {
       }
     });
 
-    router.get('/:id',async (ctx: Context) => {
+    router.get('/:id', async (ctx: Context) => {
       try {
         const rentalId: string = ctx.params.id;
         const response: IRental = await rentalService.getRentalById(rentalId);
@@ -33,7 +33,7 @@ export class RentalRouter {
       }
     });
 
-    router.post('/', async (ctx: Context) => {
+    router.post('/', auth, async (ctx: Context) => {
       try {
         const response: IRental = await rentalService.saveRental(ctx.request.body);
         ctx.status = 200;
@@ -44,7 +44,7 @@ export class RentalRouter {
       }
     });
 
-    router.put('/', async (ctx: Context) => {
+    router.put('/', auth, async (ctx: Context) => {
       try {
         const response: IMongoResponse = await rentalService.updateRental(ctx.request.body);
         ctx.status = 200;
@@ -55,7 +55,7 @@ export class RentalRouter {
       }
     });
 
-    router.delete('/:id', async (ctx: Context) => {
+    router.delete('/:id', auth, async (ctx: Context) => {
       try {
         const rentalId: string = ctx.params.id;
         const response: IMongoResponse = await rentalService.deleteRentalById(rentalId);

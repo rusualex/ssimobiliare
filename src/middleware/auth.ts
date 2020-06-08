@@ -1,4 +1,4 @@
-import * as config from 'config';
+import config from 'config';
 import * as jwt from 'jsonwebtoken';
 import { Context, Next } from 'koa';
 import { userService, responseWrapperService } from '../index';
@@ -9,12 +9,16 @@ export async function auth(ctx: Context, next: Next): Promise<void> {
 
   if (!token && !token.trim()) {
     ctx.status = 401;
-    ctx.body = responseWrapperService.wrapException('Access denied. No token provided')
+    ctx.body = responseWrapperService.wrapException({ message: 'Access denied. No token provided' })
   } else {
     try {
       const id: string | any = jwt.verify(token, config.get('jwtPrivateKey'));
-      const user: IUser = await userService.getUserById(id);
-
+      let user: IUser;
+      if (typeof id === "string")
+        user = await userService.getUserById(id);
+      else
+        user = await userService.getUserById(id._id);
+      console.log(user);
       if (user) {
         await next();
       } else {

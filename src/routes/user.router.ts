@@ -17,7 +17,7 @@ export class UserRouter {
       try {
         const userResponse: IUser[] = await userService.getUsers();
         if (userResponse) {
-          ctx.status = 222;
+          ctx.status = 200;
           ctx.body = responseWrapperService.wrapOk(await idMapper.remapModels(userResponse));
         }
         else {
@@ -83,7 +83,7 @@ export class UserRouter {
       }
     });
 
-    router.put('/', async (ctx: Context) => {
+    router.put('/',auth, async (ctx: Context) => {
       try {
         const userResponse: IMongoResponse = await userService.updateUser(ctx.request.body);
         ctx.status = 200;

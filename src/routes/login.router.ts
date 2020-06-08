@@ -14,7 +14,7 @@ export class LoginRouter {
         const auth = await loginService.login(ctx.request.body.username, ctx.request.body.encrypted_password);
         if (auth) {
           ctx.status = 200;
-          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(auth));
+          ctx.body = responseWrapperService.wrapOk(auth);
         }
         else {
           ctx.status = 401;

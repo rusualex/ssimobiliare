@@ -1,4 +1,5 @@
 {
   "jwtPrivateKey": "jwtPrivateKey",
-  "PORT": 8181
+  "PORT": 8181,
+  "MONGODB_URI": "mongodb+srv://rsa:6G72GLsw@cluster0-otjec.mongodb.net/ssimobiliare?retryWrites=true&w=majority"
 }

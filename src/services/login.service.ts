@@ -1,23 +1,22 @@
 import * as bcrypt from 'bcrypt';
 import config from 'config';
 import * as jwt from 'jsonwebtoken';
-import { userService } from '../index';
+import { userService, idMapper } from '../index';
 import { IAuth } from '../model/auth.model';
 import { IResetBody } from '../model/reset.model';
 import { IUser } from '../model/user.model';
 
 export class LoginService {
-  async login(username: string, password: string): Promise<IUser> {
+  async login(username: string, password: string): Promise<IAuth> {
     const user: IUser = await userService.getUserByusername(username);
     if (user) {
       const isValidPassword: boolean = await bcrypt.compare(password, user.encrypted_password);
       if (isValidPassword) {
-
-        return user;
-        // {
-        // token: jwt.sign({ _id: user._id }, config.get('jwtPrivateKey')),
-        // user
-        // };
+        const usr = await idMapper.remapModel(user);
+        return {
+          token: jwt.sign({ _id: user._id }, config.get('jwtPrivateKey')),
+          user: usr
+        };
       }
     }
 
