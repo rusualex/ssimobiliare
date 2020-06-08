@@ -17,7 +17,7 @@ export class UserRouter {
       try {
         const userResponse: IUser[] = await userService.getUsers();
         if (userResponse) {
-          ctx.status = 200;
+          ctx.status = 222;
           ctx.body = responseWrapperService.wrapOk(await idMapper.remapModels(userResponse));
         }
         else {
