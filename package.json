@@ -43,6 +43,7 @@
     "koa-router": "^8.0.8",
     "mongoose": "^5.9.10",
     "nodemailer": "^6.4.6",
-    "ts-node-dev": "^1.0.0-pre.44"
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
   }
 }
