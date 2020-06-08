@@ -1,0 +1,6 @@
+{
+  "jwtPrivateKey": "jwtPrivateKey",
+  "db": {
+    "uri": "mongodb+srv://rsa:6G72GLsw@cluster0-otjec.mongodb.net/ssimobiliare?retryWrites=true&w=majority"
+  }
+}

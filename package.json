@@ -1,0 +1,48 @@
+{
+  "name": "ss-mobiliare-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
+    "build": "rimraf ./build && tsc",
+    "prod": "npm run build && node ./build/app.js",
+    "start": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/config": "0.0.36",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/koa": "^2.11.3",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-cors": "0.0.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-router": "^7.4.0",
+    "@types/mongoose": "^5.7.12",
+    "@types/node": "^13.13.2",
+    "@types/nodemailer": "^6.4.0",
+    "nodemon": "^2.0.3",
+    "shared-tslint-mnn": "^1.1.2",
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3",
+    "@types/amqplib": "0.5.7"
+  },
+  "dependencies": {
+    "amqplib": "0.5.6",
+    "bcrypt": "^4.0.1",
+    "config": "^3.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "0.0.16",
+    "koa-json": "^2.0.2",
+    "koa-router": "^8.0.8",
+    "mongoose": "^5.9.10",
+    "nodemailer": "^6.4.6",
+    "ts-node-dev": "^1.0.0-pre.44"
+  }
+}
