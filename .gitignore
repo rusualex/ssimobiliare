@@ -60,3 +60,6 @@ vs/
 .vscode
 ./vscode
 vscode/
+
+etc.js
+config/etc.js
