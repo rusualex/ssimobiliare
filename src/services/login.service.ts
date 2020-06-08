@@ -28,32 +28,32 @@ export class LoginService {
 
   async resetPassword(body: IResetBody): Promise<boolean> {
     const user: IUser = await userService.getUserByUsername(body.resetEmail);
-    if (user) {
-      await nodemailer.createTestAccount();
+    // if (user) {
+    //   await nodemailer.createTestAccount();
 
-      const transporter: Mail = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'academypero@gmail.com',
-          pass: 'Porsche911?'
-        }
-      });
+    //   const transporter: Mail = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //       user: 'academypero@gmail.com',
+    //       pass: 'Porsche911?'
+    //     }
+    //   });
 
-      try {
-        await transporter.sendMail({
-          from: 'academypero@gmail.com',
-          to: user.email,
-          subject: 'Reset Password',
-          text: `Access the following link to reset your password: ${body.resetURL}/` + jwt.sign({
-            _id: user._id,
-          }, config.get('jwtPrivateKey'))
-        });
-      } catch (e) {
-        return false;
-      }
+    //   try {
+    //     await transporter.sendMail({
+    //       from: 'academypero@gmail.com',
+    //       to: user.email,
+    //       subject: 'Reset Password',
+    //       text: `Access the following link to reset your password: ${body.resetURL}/` + jwt.sign({
+    //         _id: user._id,
+    //       }, config.get('jwtPrivateKey'))
+    //     });
+    //   } catch (e) {
+    //     return false;
+    //   }
 
-      return true;
-    }
+    //   return true;
+    // }
 
     return false;
   }
