@@ -3,7 +3,7 @@ import config from 'config';
 import * as jwt from 'jsonwebtoken';
 import { Context } from 'koa';
 import Router from 'koa-router';
-import { responseWrapperService, userService } from '../index';
+import { responseWrapperService, userService, idMapper } from '../index';
 import { IMongoResponse } from '../model/mongo-response.model';
 import { INewPassword } from '../model/new-password.model';
 import { IUser } from '../model/user.model';
@@ -18,7 +18,7 @@ export class UserRouter {
         const userResponse: IUser[] = await userService.getUsers();
         if (userResponse) {
           ctx.status = 200;
-          ctx.body = responseWrapperService.wrapOk(userResponse);
+          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModels(userResponse));
         }
         else {
           ctx.status = 204;
@@ -37,7 +37,7 @@ export class UserRouter {
         if (userResponse) {
           ctx.status = 200;
           const etc: any = userResponse;
-          ctx.body = responseWrapperService.wrapOk(userResponse);
+          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(userResponse));
         }
         else {
           ctx.status = 204;
@@ -55,7 +55,7 @@ export class UserRouter {
         const userResponse: IUser = await userService.getUserByUsername(userName);
         if (userResponse) {
           ctx.status = 200;
-          ctx.body = responseWrapperService.wrapOk(userResponse);
+          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(userResponse));
         }
         else {
           ctx.status = 204;
@@ -72,7 +72,7 @@ export class UserRouter {
         const userResponse: IUser = await userService.saveUser(ctx.request.body);
         if (userResponse) {
           ctx.status = 201;
-          ctx.body = responseWrapperService.wrapOk(userResponse);
+          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(userResponse));
         } else {
           ctx.status = 200;
           ctx.body = responseWrapperService.wrapOk(userResponse);

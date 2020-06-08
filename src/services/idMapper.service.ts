@@ -1,10 +1,22 @@
 import { IUser } from './../model/user.model';
 export class IdMapper {
-    constructor(){};
-    async remapUser(user: IUser) {
-        const customUser = user;
-        customUser.id = customUser._id;
+    async remapModel(entity: any) {
+        const model = entity.toObject();
+        model.id = model._id;
+        delete model._id;
+        delete model.__v;
+        return model;
+    }
 
-        return customUser;
+    async remapModels(entitys: any[]) {
+        var modelsRemapped: any[] = [];
+        entitys.forEach(usr => {
+            const modelRemapped = usr.toObject();
+            modelRemapped.id = usr.id;
+            delete modelRemapped._id;
+            delete modelRemapped.__v;
+            modelsRemapped.push(modelRemapped);
+        });
+        return modelsRemapped;
     }
 }

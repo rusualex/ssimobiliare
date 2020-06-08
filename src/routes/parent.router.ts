@@ -7,7 +7,7 @@ export class ParentRouter {
   getRouter(): Router {
     const router: Router = new Router();
 
-    router.use('/rentals', rentalRouter.getRouter().routes());
+    router.use('/apartments', rentalRouter.getRouter().routes());
     router.use('/users', userRouter.getRouter().routes());
     router.use('/login', loginRouter.getRouter().routes());
 

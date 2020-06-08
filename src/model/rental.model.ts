@@ -20,17 +20,12 @@ export interface IRental extends Document {
 }
 
 const RentalSchema: Schema = new Schema({
-  title: { type: String, required: true  },
-  price: { type: Number, required: true  },
-  price_garanty: { type: Boolean, required: true  },
-  rooms: { type: Number, required: true  },
-  whole_or_split: { type: Boolean, required: true  },
-  requirements: { type: Object, required: true  },
-  location: { type: String, required: true  },
-  description: { type: String, required: true  },
-  userName_who_posted: { type: String, required: true  },
-  pictures: [{ type: String }],
-  feedbacks: [{ type: Object }]
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  mapLink: { type: String, required: true },
+  details: { type: String, required: true },
+  user_id: { type: String, required: true },
+  pictureFileName: { type: String, required: true }
 });
 
 export const Rental: Model<IRental> = mongoose.model<IRental>('Rental', RentalSchema);

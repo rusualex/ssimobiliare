@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import Router from 'koa-router';
-import { responseWrapperService, rentalService } from '../index';
+import { responseWrapperService, rentalService, idMapper } from '../index';
 import { auth } from '../middleware/auth';
 import { IMongoResponse } from '../model/mongo-response.model';
 import { IRental } from '../model/rental.model';
@@ -14,7 +14,7 @@ export class RentalRouter {
         const filter: object = ctx.request.query;
         const response: IRental[] = await rentalService.getRentals(filter);
         ctx.status = 200;
-        ctx.body = responseWrapperService.wrapOk(response);
+        ctx.body = responseWrapperService.wrapOk(await idMapper.remapModels(response));
       } catch (e) {
         ctx.status = 500;
         ctx.body = responseWrapperService.wrapException(e);
@@ -26,7 +26,7 @@ export class RentalRouter {
         const rentalId: string = ctx.params.id;
         const response: IRental = await rentalService.getRentalById(rentalId);
         ctx.status = 200;
-        ctx.body = responseWrapperService.wrapOk(response);
+        ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(response));
       } catch (e) {
         ctx.status = 500;
         ctx.body = responseWrapperService.wrapException(e);
@@ -37,7 +37,7 @@ export class RentalRouter {
       try {
         const response: IRental = await rentalService.saveRental(ctx.request.body);
         ctx.status = 200;
-        ctx.body = responseWrapperService.wrapOk(response);
+        ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(response));
       } catch (e) {
         ctx.status = 500;
         ctx.body = responseWrapperService.wrapException(e);

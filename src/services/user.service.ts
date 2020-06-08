@@ -8,7 +8,7 @@ export class UserService {
   }
 
   async getUserById(_id: string): Promise<IUser> {
-    return (User.findById({ _id }));
+    return User.findById({ _id });
   }
 
   async getUserByUsername(userName: string): Promise<IUser> {

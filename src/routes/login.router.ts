@@ -11,11 +11,10 @@ export class LoginRouter {
 
     router.post('/', async (ctx: Context) => {
       try {
-        const auth: IUser = await loginService.login(ctx.request.body.userName, ctx.request.body.encrypted_password);
+        const auth = await loginService.login(ctx.request.body.userName, ctx.request.body.encrypted_password);
         if (auth) {
           ctx.status = 200;
-          (auth as any).id = (auth as any)._id;
-          ctx.body = responseWrapperService.wrapOk(idMapper.remapUser(auth));
+          ctx.body = responseWrapperService.wrapOk(await idMapper.remapModel(auth));
         }
         else {
           ctx.status = 401;
