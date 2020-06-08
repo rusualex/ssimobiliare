@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import Router from 'koa-router';
-import { loginService, responseWrapperService } from '../index';
+import { loginService, responseWrapperService, idMapper } from '../index';
 import { IAuth } from '../model/auth.model';
 import { IResetBody } from '../model/reset.model';
 import { IUser } from '../model/user.model';
@@ -15,7 +15,7 @@ export class LoginRouter {
         if (auth) {
           ctx.status = 200;
           (auth as any).id = (auth as any)._id;
-          ctx.body = responseWrapperService.wrapOk(auth);
+          ctx.body = responseWrapperService.wrapOk(idMapper.remapUser(auth));
         }
         else {
           ctx.status = 401;
